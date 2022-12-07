@@ -1,7 +1,18 @@
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import DefaultImage from "../assets/images/house.jpg";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import millify from "millify";
@@ -36,14 +47,16 @@ const Property: FC<{
     externalID,
   },
 }) => {
+  const matches = useMediaQuery("(min-width:600px)");
   return (
     <Box
       sx={{
         display: "flex",
         cursor: "pointer",
         flexWrap: "wrap",
-        width: "410px",
-        p: 3,
+        width: `${matches ? 400 : 350}`,
+
+        py: 3,
         pt: 0,
         justifyContent: "flex-start",
         alignItems: "flex-start",
@@ -51,52 +64,63 @@ const Property: FC<{
     >
       <Link href={`property/${externalID}`} passHref>
         <Box>
-          <Image
-            src={coverPhoto ? coverPhoto.url : DefaultImage}
-            width={400}
-            height={260}
-            alt="house"
-          />
-        </Box>
-        <Box width="100%">
-          <Stack
-            pt={1}
-            alignItems="center"
-            justifyContent="space-between"
-            direction="row"
-          >
-            <Stack
-              alignItems="center"
-              direction="row"
-              justifyContent="flex-start"
-            >
-              <Box pr={2} color="#43a047">
-                {isVerified && <VerifiedIcon sx={{ fontSize: 20 }} />}
-              </Box>
+          <Card>
+            <CardMedia>
+              <Image
+                src={coverPhoto ? coverPhoto.url : DefaultImage}
+                width={matches ? 400 : 350}
+                height={matches ? 260 : 200}
+                alt="house"
+                // layout="responsive"
+              />
+            </CardMedia>
+            <CardContent>
+              <Stack
+                pt={1}
+                alignItems="center"
+                justifyContent="space-between"
+                direction="row"
+              >
+                <Stack
+                  alignItems="center"
+                  direction="row"
+                  justifyContent="flex-start"
+                >
+                  <Box pr={2} color="#43a047">
+                    {isVerified && <VerifiedIcon sx={{ fontSize: 20 }} />}
+                  </Box>
 
-              <Typography fontWeight={600} fontSize={18}>
-                AED {millify(price)}
-                {rentFrequency && `/${rentFrequency}`}
+                  <Typography fontWeight={600} fontSize={18}>
+                    AED {millify(price)}
+                    {rentFrequency && `/${rentFrequency}`}
+                  </Typography>
+                </Stack>
+                <Box>
+                  <Avatar src={agency?.logo?.url} />
+                </Box>
+              </Stack>
+              <Stack
+                alignItems="center"
+                p={1}
+                justifyContent="space-between"
+                width={matches ? 300 : 280}
+                sx={{ color: "#1e88e5" }}
+                direction="row"
+              >
+                {rooms} <HotelIcon /> | {baths} <BathtubIcon /> |{" "}
+                {millify(area)} sqft <GridViewIcon />
+              </Stack>
+              <Typography fontWeight={100} fontSize={18}>
+                {matches
+                  ? title.length > 30
+                    ? `${title.substring(0, 28)}...`
+                    : title
+                  : title.length > 28
+                  ? `${title.substring(0, 28)}...`
+                  : title}
               </Typography>
-            </Stack>
-            <Box>
-              <Avatar src={agency?.logo?.url} />
-            </Box>
-          </Stack>
-          <Stack
-            alignItems="center"
-            p={1}
-            justifyContent="space-between"
-            width="280px"
-            sx={{ color: "#1e88e5" }}
-            direction="row"
-          >
-            {rooms} <HotelIcon /> | {baths} <BathtubIcon /> | {millify(area)}{" "}
-            sqft <GridViewIcon />
-          </Stack>
-          <Typography fontWeight={100} fontSize={18}>
-            {title.length > 30 ? `${title.substring(0, 30)}...` : title}
-          </Typography>
+            </CardContent>
+          </Card>
         </Box>
       </Link>
     </Box>

@@ -6,6 +6,7 @@ import {
   Stack,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { height } from "@mui/system";
 import Link from "next/link";
@@ -16,21 +17,27 @@ import { Home, Key, Search, Shop } from "@mui/icons-material";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const matches = useMediaQuery("(min-width:600px)");
   return (
-    <AppBar elevation={0} sx={{ bgcolor: "white" }}>
+    <AppBar elevation={matches ? 0 : 1} sx={{ bgcolor: "white" }}>
       <Toolbar
         sx={{
           position: "sticky",
           top: 0,
           bgcolor: "white",
           borderBottom: "1px solid",
-          borderColor: "#9e9e9e",
+          borderColor: matches ? "#9e9e9e" : "#fff",
           height: "80px",
-          mx: 10,
+          mx: matches ? 10 : 0,
         }}
       >
         <Stack direction="row" justifyContent="space-between" width="100%">
-          <Typography variant="h4" color="#03a9f4" fontWeight={600} pl={5}>
+          <Typography
+            variant="h4"
+            color="#03a9f4"
+            fontWeight={600}
+            pl={matches ? 5 : 2}
+          >
             <Link href="/"> Realtor</Link>
           </Typography>
 
@@ -63,7 +70,7 @@ const Navbar = () => {
                 </IconButton>
               </Box>
 
-              <Box p={2} width="300px" textAlign="center">
+              <Box p={2} width={matches ? "300px" : "250px"} textAlign="center">
                 <Link href="/" passHref>
                   <Stack
                     direction="row"

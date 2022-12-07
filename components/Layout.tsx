@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import Head from "next/head";
 import React, { ReactNode } from "react";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 type Props = { children: ReactNode };
 const Layout = (props: Props) => {
@@ -14,7 +15,9 @@ const Layout = (props: Props) => {
           <Navbar />
         </header>
         <main>{props.children}</main>
-        <footer>footer</footer>
+        <footer>
+          <Footer />
+        </footer>
       </Box>
     </>
   );

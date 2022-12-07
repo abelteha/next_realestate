@@ -29,10 +29,19 @@ const Banner: FC<{
     flexWrap="wrap"
     justifyContent="center"
     alignItems="center"
-    m={5}
+    my={5}
     direction={"row"}
   >
-    <Image src={imageUrl} width={500} height={300} alt="banner" />
+    <Box width="400px">
+      <Image
+        src={imageUrl}
+        width={500}
+        height={300}
+        alt="banner"
+        layout="responsive"
+      />
+    </Box>
+
     <Box p={5}>
       <Typography color="#424242" fontSize={15} fontWeight={100} gutterBottom>
         {purpose}
@@ -82,7 +91,15 @@ const Home: FC<{ propertiesForSale: any[]; propertiesForRent: any[] }> = ({
         linkName="/search?purpose=for-rent"
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
       />
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 5,
+          justifyContent: "center",
+          // alignItems: "center",
+        }}
+      >
         {propertiesForRent.map((property) => (
           <Property property={property} key={property.id} />
         ))}
@@ -97,7 +114,14 @@ const Home: FC<{ propertiesForSale: any[]; propertiesForRent: any[] }> = ({
         linkName="/search?purpose=for-sale"
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
       />
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 5,
+          justifyContent: "center",
+        }}
+      >
         {propertiesForSale.map((property) => (
           <Property property={property} key={property.id} />
         ))}
