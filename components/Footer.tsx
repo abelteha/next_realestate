@@ -6,9 +6,9 @@ const Footer = () => {
     <Box
       textAlign="center"
       p={5}
-      color="#ccc"
+      color="#616161"
       borderTop="1px solid"
-      borderColor="#ccc"
+      borderColor="#fff"
     >
       2022 Realtor, Inc.
     </Box>

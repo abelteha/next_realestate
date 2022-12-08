@@ -67,11 +67,12 @@ const Property: FC<{
           <Card>
             <CardMedia>
               <Image
-                src={coverPhoto ? coverPhoto.url : DefaultImage}
+                src={`${
+                  coverPhoto ? coverPhoto.url : DefaultImage
+                }?w=400&h=260&fit=crop&auto=enhance&dpr=1`}
                 width={matches ? 400 : 350}
                 height={matches ? 260 : 200}
                 alt="house"
-                // layout="responsive"
               />
             </CardMedia>
             <CardContent>

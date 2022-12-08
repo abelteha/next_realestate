@@ -18,6 +18,9 @@ import { Home, Key, Search, Shop } from "@mui/icons-material";
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const matches = useMediaQuery("(min-width:600px)");
+  const handleClick = () => {
+    setIsDrawerOpen(false);
+  };
   return (
     <AppBar elevation={matches ? 0 : 1} sx={{ bgcolor: "white" }}>
       <Toolbar
@@ -79,6 +82,7 @@ const Navbar = () => {
                     mb={1}
                     sx={{ "&:hover": { bgcolor: "#e1f5fe" } }}
                     p={2}
+                    onClick={handleClick}
                   >
                     <Home color="info" />
                     <Typography>Home</Typography>
@@ -92,6 +96,7 @@ const Navbar = () => {
                     mb={1}
                     sx={{ "&:hover": { bgcolor: "#e1f5fe" } }}
                     p={2}
+                    onClick={handleClick}
                   >
                     <Search color="info" />
                     <Typography>Search</Typography>
@@ -105,6 +110,7 @@ const Navbar = () => {
                     mb={1}
                     sx={{ "&:hover": { bgcolor: "#e1f5fe" } }}
                     p={2}
+                    onClick={handleClick}
                   >
                     <Shop color="info" />
                     <Typography>Buy Property</Typography>
@@ -118,6 +124,7 @@ const Navbar = () => {
                     mb={1}
                     sx={{ "&:hover": { bgcolor: "#e1f5fe" } }}
                     p={2}
+                    onClick={handleClick}
                   >
                     <Key color="info" />
                     <Typography>Rent Property</Typography>

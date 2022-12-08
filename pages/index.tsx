@@ -80,7 +80,7 @@ const Home: FC<{ propertiesForSale: any[]; propertiesForRent: any[] }> = ({
   console.log(propertiesForSale, propertiesForRent);
 
   return (
-    <Box>
+    <Box mt={12}>
       <Banner
         purpose="RENT A HOME"
         title1="Rental Homes for"
