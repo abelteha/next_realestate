@@ -19,20 +19,10 @@ import millify from "millify";
 import HotelIcon from "@mui/icons-material/Hotel";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import GridViewIcon from "@mui/icons-material/GridView";
+import { property } from "../model/filteredProperty";
 
 const Property: FC<{
-  property: {
-    coverPhoto: any;
-    price: number;
-    rentFrequency: string;
-    rooms: string;
-    title: string;
-    baths: string;
-    area: number;
-    agency: any;
-    isVerified: boolean;
-    externalID: string;
-  };
+  property: property;
 }> = ({
   property: {
     coverPhoto,

@@ -7,6 +7,7 @@ import Property from "../components/Property";
 import SearchFilters from "../components/SearchFilters";
 import noresult from "../assets/images/noresult.svg";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
+import { filteredProperty } from "../model/filteredProperty";
 const search: FC<{ properties: any }> = ({ properties }) => {
   const [searchFilters, setSearchFilters] = useState(false);
   const matches = useMediaQuery("(min-width:600px)");
@@ -86,9 +87,10 @@ export async function getServerSideProps({ query }: any) {
   const areaMax = query.areaMax || "35000";
   const locationExternalIDs = query.locationExternalIDs || "5002";
   const categoryExternalID = query.categoryExternalID || "4";
+  const furnishingStatus = query.furnishingStatus || "furnished";
 
   const data = await fetchApi(
-    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
+    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
   );
 
   return {
