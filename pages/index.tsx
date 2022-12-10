@@ -77,8 +77,6 @@ const Home: FC<{ propertiesForSale: any[]; propertiesForRent: any[] }> = ({
   propertiesForSale,
   propertiesForRent,
 }) => {
-  console.log(propertiesForSale, propertiesForRent);
-
   return (
     <Box mt={12}>
       <Banner
