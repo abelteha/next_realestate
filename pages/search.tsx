@@ -8,8 +8,8 @@ import SearchFilters from "../components/SearchFilters";
 import noresult from "../assets/images/noresult.svg";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
 
-const search: FC<{ properties: any }> = ({ properties }) => {
-  const [searchFilters, setSearchFilters] = React.useState(false);
+const Search: FC<{ properties: any }> = ({ properties }) => {
+  const [searchFilters, setSearchFilters] = useState(false);
   const matches = useMediaQuery("(min-width:600px)");
   console.log(searchFilters);
 
@@ -100,4 +100,4 @@ export async function getServerSideProps({ query }: any) {
   };
 }
 
-export default search;
+export default Search;
