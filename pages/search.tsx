@@ -7,7 +7,7 @@ import Property from "../components/Property";
 import SearchFilters from "../components/SearchFilters";
 import noresult from "../assets/images/noresult.svg";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
-import { filteredProperty } from "../model/filteredProperty";
+
 const search: FC<{ properties: any }> = ({ properties }) => {
   const [searchFilters, setSearchFilters] = useState(false);
   const matches = useMediaQuery("(min-width:600px)");

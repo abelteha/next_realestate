@@ -2,13 +2,15 @@ import React, { FC, useState } from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { ArrowCircleRight } from "@mui/icons-material";
 import { photos } from "../model/scrollbar";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import blurryImage from "../assets/images/blur.jpg";
 
 const ImageSlider: FC<{ data: photos }> = ({ data }) => {
   const [current, setCurrent] = useState(0);
   const length = data.length;
+  const sm = useMediaQuery("(min-width:700px)");
+  const md = useMediaQuery("(min-width:950px)");
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? current : current + 1);
@@ -46,17 +48,24 @@ const ImageSlider: FC<{ data: photos }> = ({ data }) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      gap={1}
+      flexDirection={sm ? "row" : "column"}
+      gap={sm ? 1 : 0}
     >
-      <Box>
-        <IconButton onClick={() => prevSlide()}>
-          <ArrowCircleLeftIcon />
-        </IconButton>
-      </Box>
+      {sm && (
+        <Box>
+          <IconButton onClick={() => prevSlide()}>
+            <ArrowCircleLeftIcon />
+          </IconButton>
+        </Box>
+      )}
       <Box>
         {data.map((item, index) => {
           return (
-            <Box width={900} overflow="hidden" p="1" key={index}>
+            <Box
+              width={md ? 850 : sm ? 600 : 320}
+              overflow="hidden"
+              key={index}
+            >
               {index === current && (
                 <Image
                   alt="property"
@@ -65,8 +74,8 @@ const ImageSlider: FC<{ data: photos }> = ({ data }) => {
                     convertImage(900, 400)
                   )}`}
                   src={`${item.url}?w=900&h=500&fit=crop&auto=format&dpr=1`}
-                  width={900}
-                  height={500}
+                  width={md ? 850 : sm ? 600 : 320}
+                  height={md ? 500 : sm ? 400 : 200}
                   priority
                 />
               )}
@@ -74,12 +83,22 @@ const ImageSlider: FC<{ data: photos }> = ({ data }) => {
           );
         })}
       </Box>
-
-      <Box>
-        <IconButton onClick={() => nextSlide()}>
-          <ArrowCircleRight />
-        </IconButton>
-      </Box>
+      <Stack direction="row">
+        {sm ? (
+          ""
+        ) : (
+          <Box>
+            <IconButton onClick={() => prevSlide()}>
+              <ArrowCircleLeftIcon />
+            </IconButton>
+          </Box>
+        )}
+        <Box>
+          <IconButton onClick={() => nextSlide()}>
+            <ArrowCircleRight />
+          </IconButton>
+        </Box>
+      </Stack>
     </Box>
   );
 };
