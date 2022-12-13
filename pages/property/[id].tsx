@@ -1,8 +1,8 @@
 import { Avatar, Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import millify from "millify";
-import { title } from "process";
+
 import React, { FC } from "react";
-import ImageScrollbar from "../../components/ImageScroll";
+
 import ImageSlider from "../../components/ImageSlider";
 import { propertyDetails } from "../../model/scrollbar";
 import { baseUrl, fetchApi } from "../../utils/fetchApi";

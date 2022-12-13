@@ -1,5 +1,5 @@
 import { FilterList } from "@mui/icons-material";
-import { Box, Icon, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
