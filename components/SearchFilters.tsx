@@ -99,7 +99,7 @@ const SearchFilters = () => {
       gap={2}
     >
       {filters.map((filter) => (
-        <FormControl sx={{ width: 200 }}>
+        <FormControl sx={{ width: 200 }} key={filter.queryName}>
           <InputLabel id="demo-simple-select-label">
             {filter.placeholder}
           </InputLabel>
